@@ -1,0 +1,171 @@
+/*Initialisation of CSS properties by default*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/*variables & root*/
+:root {
+    --main-font: 'Permanent Marker', cursive;
+}
+
+@keyframes clignote {
+    0% {
+        filter: brightness(1);
+    }
+    50% {
+        filter: brightness(2);
+    }
+    100% {
+        filter: brightness(1);
+    }
+ }
+body {
+    height: 100vh;
+}
+
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height : 30%;
+    background: #ddd;
+}
+
+.title {
+    font-family: var(--main-font);
+    font-size: 5rem;
+    color : #AD00E7;
+    text-shadow: 3px 3px pink, -1px -2px yellowgreen;
+    animation: 2s infinite clignote ;
+}
+
+button {
+    width: 300px;
+    background-color: #AD00E7;
+    color: yellow;
+    border: none;
+    padding: 5px;
+    box-shadow: 1px 1px 5px;
+    border-radius: 10px;
+    font-family: var(--main-font);
+    filter: brightness(1);
+    transition: 0.4s;
+}
+
+button:hover {
+    transform: scale(1.1);
+    filter: brightness(2);
+    
+}
+
+main {
+    height: 70%;
+    background-color: 
+}
+
+.game-area {
+    height: 60%;
+    background: #bbb;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.game-buttons button {
+    width: 100px;
+}
+
+.players-area {
+    height : 40%;
+    background :#ddd;
+    display: flex;
+    
+}
+
+#player1, #player2 {
+    height: 100%;
+    width: 50%;
+    flex-direction: column;
+    justify-content: space-between;
+    display: flex;
+}
+
+#player2 {
+    text-align:end;
+}
+
+#player2 img {
+    transform: scaleX(-1)
+}
+
+.score-area {
+    z-index: 10;
+    font-family: var(--main-font);
+    font-size: 2rem;
+    color: yellowgreen;
+    text-shadow: yellow 2px 1px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.scorebar {
+    width: 150px;
+    height: 30px;
+    border: 2px solid pink;
+    border-radius: 20px;
+}
+
+.avatar {
+    position: relative;
+    color: greenyellow;
+}
+
+.avatar img {
+    position: absolute;
+    bottom: 0;
+    max-height: 80vh;
+}
+
+#player1 .avatar img {
+    left: 0;
+}
+
+#player2 .avatar img {
+    right: 0;
+}
+
+.avatar-selector {
+    display: flex;
+    justify-content: center;
+}
+
+.avatar-selector > * {
+    padding: 5px;
+    font-family: var(--main-font);
+    z-index: 10;
+    font-size: 1.5rem;
+    background-color: rgba(0,0,0,0.5);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+#player1{
+    background: rgba(233, 255, 36, 0.651);
+}
+
+#player2 {
+    opacity: 0.6;
+}
+
+.ok {
+    font-size: 2em;
+    color: yellow;
+    padding: 10px;
+    border: solid 2px greenyellow;
+    border-radius: 50%;
+}

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <div class="title">Crazy Dice</div>
+        <button class="launch">Nouvelle Partie</button>
+    </header>
+    <main>
+        <div class="game-area">
+        <canvas id="dice" height="200" width="200"></canvas>
+        <div class="game-buttons">
+            <button>lancer</button>
+            <button>garder</button>
+        </div>
+        </div>
+        <div class="players-area">
+            <div id="player1">
+                <div class="score-area">
+                    <P class="score">100</P>
+                    <div class="scorebar"><div class="scorefill"></div></div>
+                </div>
+                <div class="avatar">
+                    <img src="assets/avatars/magma.png" alt="">
+                    <div class="avatar-selector">
+                        <i class="fas fa-arrow-circle-left"></i>
+                        <p class="choice">sélectionner</p>
+                        <i class="fas fa-arrow-circle-right"></i>
+                    </div>
+                </div>
+            </div>
+            <div id="player2">
+                <div class="score-area">
+                    <P class="score">100</P>
+                    <div class="scorebar"><div class="scorefill"></div></div>
+                </div>
+                <div class="avatar">
+                    <img src="assets/avatars/cox.png" alt="">
+                    <div class="avatar-selector">
+                        <i class="fas fa-arrow-circle-left"></i>
+                        <p class="choice">sélectionner</p>
+                        <i class="fas fa-arrow-circle-right"></i>
+                        <p class="ok">ok</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="script.js" type="module">        
+    
+    </script>
+
+</body>
+</html>
