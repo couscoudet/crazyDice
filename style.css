@@ -1,15 +1,23 @@
 /*Initialisation of CSS properties by default*/
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
 
 /*variables & root*/
 :root {
     --main-font: 'Permanent Marker', cursive;
 }
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--main-font);
+}
+
+/*Always display number input arrows */
+input[type=number]::-webkit-inner-spin-button {
+    opacity: 1;
+  }
+
+/*Title light animation*/
 @keyframes clignote {
     0% {
         filter: brightness(1);
@@ -21,6 +29,7 @@
         filter: brightness(1);
     }
  }
+
 body {
     height: 100vh;
 }
@@ -36,10 +45,25 @@ header {
 
 .title {
     font-family: var(--main-font);
-    font-size: 5rem;
+    font-size: 4rem;
     color : #AD00E7;
     text-shadow: 3px 3px pink, -1px -2px yellowgreen;
     animation: 2s infinite clignote ;
+}
+
+#scoreForm {
+    margin-bottom: 5px;
+}
+
+#scoreForm label {
+    color: purple;
+}
+
+#winScore {
+    border: none;
+    width: 70px;
+    text-align: center;
+    border-radius: 20px;
 }
 
 button {
@@ -53,12 +77,18 @@ button {
     font-family: var(--main-font);
     filter: brightness(1);
     transition: 0.4s;
+    font-size: 1.5rem;
+    cursor: pointer;
 }
 
 button:hover {
     transform: scale(1.1);
     filter: brightness(2);
-    
+}
+
+button:active {
+    transform: scale(0.95);
+    box-shadow: 0 0;
 }
 
 main {
@@ -66,12 +96,26 @@ main {
     background-color: 
 }
 
-.game-area {
+#game-area {
     height: 60%;
     background: #bbb;
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
+}
+
+#turn-points {
+    position: absolute;
+    z-index: 2;
+    font-family: var(--main-font);
+    font-size: 2rem;
+    top: 10px;
+    color: yellow;
+    background-color: black;
+    padding: 3px;
+    border-radius: 20px;
+    border: solid 2px #AD00E7;
 }
 
 .game-buttons button {
@@ -91,12 +135,14 @@ main {
     flex-direction: column;
     justify-content: space-between;
     display: flex;
+    transition: 0.8s;
 }
 
 #player2 {
     text-align:end;
 }
 
+/* invert avatr img on the right of the screen for the player 2 */
 #player2 img {
     transform: scaleX(-1)
 }
@@ -120,6 +166,13 @@ main {
     border-radius: 20px;
 }
 
+.scorefill {
+    border-radius: 20px;
+    background: yellow;
+    height : 100%;
+    width: 0%;
+}
+
 .avatar {
     position: relative;
     color: greenyellow;
@@ -128,7 +181,7 @@ main {
 .avatar img {
     position: absolute;
     bottom: 0;
-    max-height: 80vh;
+    max-height: 70vh;
 }
 
 #player1 .avatar img {
@@ -154,11 +207,15 @@ main {
     border-radius: 5px;
 }
 
-#player1{
+.active-turn{
     background: rgba(233, 255, 36, 0.651);
 }
 
-#player2 {
+.active-turn img{
+    filter: drop-shadow(10px 10px 20px yellow);
+}
+
+.inactive-turn{
     opacity: 0.6;
 }
 
@@ -168,4 +225,22 @@ main {
     padding: 10px;
     border: solid 2px greenyellow;
     border-radius: 50%;
+}
+
+.ok:hover, .fas:hover {
+    cursor: pointer;
+}
+
+.choice {
+    width: 200px;
+    text-align: center;
+}
+
+.winner {
+    background: #AD00E7;
+    transform: scale(1.2);
+}
+
+.winner img{
+    filter: drop-shadow(10px 10px 20px red);
 }
