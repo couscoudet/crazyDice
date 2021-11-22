@@ -120,13 +120,13 @@ main {
 
 .game-buttons button {
     width: 100px;
+    z-index: 20;
 }
 
 .players-area {
     height : 40%;
     background :#ddd;
     display: flex;
-    
 }
 
 #player1, #player2 {
@@ -181,7 +181,7 @@ main {
 .avatar img {
     position: absolute;
     bottom: 0;
-    max-height: 70vh;
+    max-width: 40vw;
 }
 
 #player1 .avatar img {
@@ -243,4 +243,15 @@ main {
 
 .winner img{
     filter: drop-shadow(10px 10px 20px red);
+}
+
+@media screen and (max-height: 600px) {
+    html {
+        font-size: 10px;
+    }
+
+    .game-buttons {
+        position: absolute;
+        top: 0;
+    }
 }

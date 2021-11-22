@@ -207,19 +207,14 @@ $(($) => {
     /****************************EVENTS AND FUNCTIONS********************************** */
 
     //CLICK EVENTS TO CHANGE AVATAR
-    $('#player1 .fa-arrow-circle-left').click(player1.avatarLeft)
-    $('#player1 .fa-arrow-circle-right').click(player1.avatarRight)
-    $('#player2 .fa-arrow-circle-left').click(player2.avatarLeft)
-    $('#player2 .fa-arrow-circle-right').click(player2.avatarRight)
-    $('#player1 .ok').click(() => {
-        $('#player1 .avatar-selector').hide();
-        player1.ready = true;
-        game.openGame()
-    })
-    $('#player2 .ok').click(() => {
-        $('#player2 .avatar-selector').hide();
-        player2.ready = true;
-        game.openGame()
+    players.forEach((player) => {
+        $(`#${player.name} .fa-arrow-circle-left`).click(player.avatarLeft);
+        $(`#${player.name} .fa-arrow-circle-right`).click(player.avatarRight);
+        $(`#${player.name} .ok`).click(() => {
+            $(`#${player.name} .avatar-selector`).hide();
+            player.ready = true;
+            game.openGame();
+        })
     })
     
     //START GAME EVENT
@@ -231,7 +226,7 @@ $(($) => {
     //KEEP SCORE EVENT
     $('#keepScore').click(game.keepScore)
 
-    //WinScore security events
+    //WinScore input security events
     const alertMessage = () => {
         if ($('#winScore').val() < 20) {
             return('Vous risquez de ne pas jouer très longtemps')
@@ -250,6 +245,8 @@ $(($) => {
     })
 
 
+    /************************DICE 3D SCENE MODELING WITH THREE JS ***************************************** */
+
     let canvas = document.getElementById("dice")
 
     //Initialisation des paramètres principaux de la scène
@@ -259,9 +256,9 @@ $(($) => {
     
     let dice
 
+    //import dice
     loader.load( 'assets/dice.glb', function ( gltf ) {
         scene.add(gltf.scene);
-        console.log(gltf.scene.children)
         dice = gltf.scene.children[5];
         renderer.render(scene, camera)
     }, 
@@ -281,6 +278,7 @@ $(($) => {
     // Recul de la camera par rapport à l'origine
     camera.position.z = 4;
 
+    //Different lights
     const light2 = new THREE.PointLight( 0xffff4f, 5, 100 );
     const light3 = new THREE.PointLight( 0xffffff, 2, 100 );
     const light4 = new THREE.PointLight( 0xffffff, 10, 100 );
@@ -289,6 +287,7 @@ $(($) => {
     light4.position.set(0,-4,5);
     scene.add(light2, light3, light4)
 
+    //predefined rotations depending on the number to show
     let rotations = {
         1 : {
             x: Math.PI/2,
@@ -310,27 +309,22 @@ $(($) => {
             y: 2 * Math.PI }
     }
 
-
+    //Create variable to animate and stop x axis and y axis rotations
     let animateX
     let animateY
 
-    let diceNumber = 0
-    
-
+    //Dice animation at Game opening (after choosing avatars)
     let initiateAnimation = () => {
-        console.log("avant initialisation : " + dice.rotation.x + " " + dice.rotation.y)
         if (dice.rotation.y > 0) {
             dice.rotation.y -= Math.PI * 0.04
-            renderer.render(scene, camera)
-            console.log("etape 1")
-            animateY = window.requestAnimationFrame(initiateAnimation)
+            renderer.render(scene, camera) //render the scene
+            animateY = window.requestAnimationFrame(initiateAnimation) //launch frame animation with recursive function
         }
         else {
             window.cancelAnimationFrame(animateY)
             if (dice.rotation.x > 0) {
                 dice.rotation.x -= Math.PI * 0.04
                 renderer.render(scene, camera)
-                console.log("etape 2")
                 animateX = window.requestAnimationFrame(initiateAnimation)
             }
             else {
@@ -340,6 +334,7 @@ $(($) => {
         }
     }
 
+    //Dice animation when roll
     let throwAnimation = () => {
         if (dice.rotation.y < rotations[dicePoints].y) {
             dice.rotation.y += Math.PI * 0.05
@@ -362,14 +357,19 @@ $(($) => {
         }
     }
 
+    //Winner display function
     let winFunction = (player) => {
         player.showWinner()
         $('#throwDice, #keepScore').hide()
         openGameSound.play()
     }
 
-
-
-
+   //Orientation check for mobile device for game experience
+   window.addEventListener("resize", () => {
+       if (window.innerWidth < window.innerHeight) {
+           alert("Passez en mode paysage pour une meilleure expérience de jeu")
+       }
+   })
+    
 //Ending Jquery
 })
