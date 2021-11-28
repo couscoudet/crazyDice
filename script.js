@@ -4,6 +4,7 @@ import { GLTFLoader } from 'https://cdn.skypack.dev/three@0.134.0/examples/jsm/l
 
 //JQUERY ENCAPSULATION
 $(($) => {
+
     
     //Hide game areas at page loading
     $('.score-area, .avatar, #throwDice, #keepScore').hide()
@@ -183,6 +184,9 @@ $(($) => {
             player = player[0];
             player.score += game.turnPoints;
             player.fillScore = player.score / game.winScore * 100;
+            if (player.fillScore > 100) {
+                player.fillScore = 100
+            }
             player.showScore();
             if (game.winGame()) {
                 let winner = game.winGame();
@@ -365,11 +369,24 @@ $(($) => {
     }
 
    //Orientation check for mobile device for game experience
+   const windowConstraints = () => {
+        if (window.innerWidth < window.innerHeight) {
+            alert("Passez en mode paysage pour une meilleure expérience de jeu")
+        }
+        if (window.innerHeight < 450) {
+        camera.position.z = 6;
+        renderer.render(scene, camera)
+        }
+    }
+    
+    windowConstraints()
+
    window.addEventListener("resize", () => {
-       if (window.innerWidth < window.innerHeight) {
-           alert("Passez en mode paysage pour une meilleure expérience de jeu")
-       }
+       windowConstraints()
    })
+
+
+
     
 //Ending Jquery
 })

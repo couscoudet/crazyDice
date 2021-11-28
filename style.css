@@ -2,7 +2,7 @@
 
 /*variables & root*/
 :root {
-    --main-font: 'Permanent Marker', cursive;
+    --main-font: 'Lato', sans-serif;
 }
 
 * {
@@ -16,6 +16,7 @@
 input[type=number]::-webkit-inner-spin-button {
     opacity: 1;
   }
+
 
 /*Title light animation*/
 @keyframes clignote {
@@ -44,8 +45,8 @@ header {
 }
 
 .title {
-    font-family: var(--main-font);
-    font-size: 4rem;
+    font-family: 'Permanent Marker', cursive;
+    font-size: 2.5rem;
     color : #AD00E7;
     text-shadow: 3px 3px pink, -1px -2px yellowgreen;
     animation: 2s infinite clignote ;
@@ -66,7 +67,7 @@ header {
     border-radius: 20px;
 }
 
-button {
+/* button {
     width: 300px;
     background-color: #AD00E7;
     color: yellow;
@@ -89,11 +90,10 @@ button:hover {
 button:active {
     transform: scale(0.95);
     box-shadow: 0 0;
-}
+} */
 
 main {
     height: 70%;
-    background-color: 
 }
 
 #game-area {
@@ -126,12 +126,15 @@ main {
 .players-area {
     height : 40%;
     background :#ddd;
-    display: flex;
+}
+
+
+.row {
+    width: 100%;
 }
 
 #player1, #player2 {
     height: 100%;
-    width: 50%;
     flex-direction: column;
     justify-content: space-between;
     display: flex;
@@ -142,7 +145,7 @@ main {
     text-align:end;
 }
 
-/* invert avatr img on the right of the screen for the player 2 */
+/* invert avatar img on the right of the screen for the player 2 */
 #player2 img {
     transform: scaleX(-1)
 }
@@ -164,6 +167,7 @@ main {
     height: 30px;
     border: 2px solid pink;
     border-radius: 20px;
+    margin-bottom: 10px;
 }
 
 .scorefill {
@@ -186,25 +190,30 @@ main {
 
 #player1 .avatar img {
     left: 0;
+    pointer-events:none;
 }
 
 #player2 .avatar img {
     right: 0;
+    pointer-events:none;
 }
 
 .avatar-selector {
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 .avatar-selector > * {
     padding: 5px;
     font-family: var(--main-font);
     z-index: 10;
-    font-size: 1.5rem;
+    font-size: 1rem;
     background-color: rgba(0,0,0,0.5);
     padding: 10px;
     border-radius: 5px;
+    line-height:normal;
+    margin : 1px;
 }
 
 .active-turn{
@@ -225,6 +234,8 @@ main {
     padding: 10px;
     border: solid 2px greenyellow;
     border-radius: 50%;
+    margin-bottom: 0;
+    text-align: center;
 }
 
 .ok:hover, .fas:hover {
@@ -232,8 +243,8 @@ main {
 }
 
 .choice {
-    width: 200px;
     text-align: center;
+    margin-bottom: 0;
 }
 
 .winner {
@@ -245,8 +256,8 @@ main {
     filter: drop-shadow(10px 10px 20px red);
 }
 
-@media screen and (max-height: 600px) {
-    html {
+@media (max-width: 992px) {
+    :root {
         font-size: 10px;
     }
 
@@ -254,4 +265,10 @@ main {
         position: absolute;
         top: 0;
     }
+
+    .scorebar {
+        width: 100px;
+        height: 15px;
+    }
+
 }
