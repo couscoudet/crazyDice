@@ -185,7 +185,7 @@ $(($) => {
             player.score += game.turnPoints;
             player.fillScore = player.score / game.winScore * 100;
             if (player.fillScore > 100) {
-                player.fillScore = 100
+                player.fillScore = 100;
             }
             player.showScore();
             if (game.winGame()) {
@@ -265,6 +265,7 @@ $(($) => {
         scene.add(gltf.scene);
         dice = gltf.scene.children[5];
         renderer.render(scene, camera)
+        $('.spinner-border').hide()
     }, 
         function ( xhr ) {
         console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );

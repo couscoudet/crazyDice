@@ -22,8 +22,11 @@
 </head>
 
 <body>
-
+    
     <header>
+        <div class="spinner-border" role="status" style="width: 3rem; height: 3rem;" >
+            <span class="sr-only">Loading...</span>
+        </div>
         <h1 class="title">Crazy Dice</h1>
         <form id="scoreForm" action="">
             <label for="winScore">Score à atteindre</label>
@@ -46,6 +49,7 @@
         <audio id="winSound">
             <source src="assets/sons/winner.wav" type="audio/wav">
         </audio>
+        
 
         <div id="game-area">
             <canvas id="dice" height="200" width="200"></canvas>
