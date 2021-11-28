@@ -265,6 +265,7 @@ $(($) => {
         scene.add(gltf.scene);
         dice = gltf.scene.children[5];
         renderer.render(scene, camera)
+        //hide spinner loader after 3d dice loading
         $('.spinner-border').hide()
     }, 
         function ( xhr ) {
